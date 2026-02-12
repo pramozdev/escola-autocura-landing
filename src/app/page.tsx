@@ -646,19 +646,19 @@ export default function Home() {
             </div>
 
             <div>
-              <h4 className="text-lg font-semibold mb-6 text-[#f6b658]">Mais na Blog</h4>
+              <h4 className="text-lg font-semibold mb-6 text-[#f6b658]">Sobre</h4>
               <ul className="space-y-3 text-white/80">
                 <li><a href="#" className="hover:text-white transition-colors">Sobre AUTOCURA</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">Contribuidores</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">Escreva para nós</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Contacto</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">Privacidade</a></li>
               </ul>
             </div>
 
             <div>
-              <h4 className="text-lg font-semibold mb-6 text-[#f6b658]">Mais em AUTOCURA</h4>
+              <h4 className="text-lg font-semibold mb-6 text-[#f6b658]">Contato</h4>
               <ul className="space-y-3 text-white/80">
+                <li><a href="#" className="hover:text-white transition-colors">Contacto</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">A Equipa</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">Emprego</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">Imprensa</a></li>
