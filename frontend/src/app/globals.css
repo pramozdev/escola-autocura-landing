@@ -25,3 +25,27 @@ body {
   color: var(--foreground);
   font-family: var(--font-primary);
 }
+
+h1,
+.heading-1 {
+  font-family: "Avenir Heavy", "Avenir Heaven", "Avenir", sans-serif;
+  font-size: clamp(2.75rem, 5vw, 4rem);
+}
+
+h2,
+.heading-2 {
+  font-family: "Avenir Heavy", "Avenir Heaven", "Avenir", sans-serif;
+  font-size: clamp(2.1rem, 3.5vw, 3rem);
+}
+
+h3,
+.heading-3 {
+  font-family: "Avenir Heaven", "Avenir Medium", "Avenir", sans-serif;
+  font-size: clamp(1.6rem, 3vw, 2.3rem);
+}
+
+h4,
+.heading-4 {
+  font-family: "Avenir Medium", "Avenir", sans-serif;
+  font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+}

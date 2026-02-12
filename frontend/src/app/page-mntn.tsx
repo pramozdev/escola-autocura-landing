@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
-import { FaQuoteLeft, FaQuoteRight } from "react-icons/fa";
 import miniLogo from "@/images/logo-mini.png";
 import balaoDuvida from "@/images/balao-duvida.png";
 import fotoTres from "@/images/foto-tres.png";
@@ -43,127 +42,6 @@ const contentSections = [
     description: "Durante várias semanas, no espaço Caminhos Prá Saúde, vão acontecer encontros presenciais onde vai poder: Sentar-se numa sala em Braga, com outras pessoas na mesma intenção, e ser guiado em meditações para limpar o peso do ano e alinhar a vida com a alma. Participar em sessões presenciais de limpeza espiritual para soltar culpa, medo, exaustão e padrões que já não fazem sentido. Estar frente a frente com TERAPEUTAS AUTOCURA, levar questões e receber orientação dentro do método para relações, trabalho, família e decisões.",
     image: mariaAssuncao,
   },
-  {
-    id: "section-04",
-    number: "04",
-    subtitle: "Programação Especial",
-    title: "Janeiro 2026",
-    description: "Eventos especiais com terapeutas AUTOCURA e convidados para aprofundar diferentes temas do método.",
-    image: fotoTres,
-  },
-  {
-    id: "section-05",
-    number: "05",
-    subtitle: "Este janeiro é para si se...",
-    title: "Reconhece-se em alguma destas frases?",
-    description: "Se se reconhece nestas linhas, este janeiro não foi marcado por acaso. Clique abaixo, escolha como quer participar e reserve o lugar que a sua alma está a pedir.",
-    image: fotoTres,
-  },
-];
-
-const programHighlights = [
-  {
-    title: "Abertura",
-    host: "com Ana Campos e Gilberto Barbosa",
-    details: [
-      { text: "Data: 12 de janeiro", emphasis: true },
-      { text: "Horário: 14h", emphasis: true },
-    ],
-  },
-  {
-    title: "A Intuição Que Cura",
-    host: "com Ana Campos",
-    details: [
-      { text: "Data: 14 de janeiro", emphasis: true },
-      { text: "Horário: 18h", emphasis: true },
-    ],
-  },
-  {
-    title: "Caminho Prá Luz",
-    host: "com Gilberto Barbosa",
-    details: [
-      { text: "Data: 15 de janeiro", emphasis: true },
-      { text: "Horário: 17h", emphasis: true },
-    ],
-  },
-  {
-    title: "DIABETES",
-    host: "com Katia Faria",
-    details: [
-      { text: "Data: 16 de janeiro", emphasis: true },
-      { text: "Horário: 18h30–20h", emphasis: true },
-    ],
-  },
-  {
-    title: "AUTOCURA® CRIANÇAS",
-    host: "com Maria Assunção e Sofia Ralha",
-    details: [
-      { text: "Datas:", emphasis: true },
-      { text: "17 de janeiro" },
-      { text: "24 de janeiro" },
-      { text: "31 de janeiro" },
-      { text: "Valor:", emphasis: true },
-      { text: "• Sessão avulsa: 20€" },
-      { text: "• Pack 3 sessões: 50€" },
-      { text: "Horário:", emphasis: true },
-      { text: "10:30 ao 12:00h" },
-    ],
-  },
-  {
-    title: "AUTOCURA® ANIMAIS",
-    host: "com Helena Rebelo",
-    details: [
-      { text: "Data: 24 de janeiro", emphasis: true },
-      { text: "Horário: 14h", emphasis: true },
-    ],
-  },
-  {
-    title: "Arte na Entrega",
-    host: "com Galyna Ilyuk",
-    details: [
-      { text: "Data: 18 de janeiro", emphasis: true },
-      { text: "Horário: 11h–13h", emphasis: true },
-      { text: "Data: 22 de janeiro", emphasis: true },
-      { text: "Horário: 11h–13h", emphasis: true },
-    ],
-  },
-];
-
-const cleansingSessions = [
-  {
-    date: "13 de Janeiro - 20h",
-    title: "Sessão de Limpeza Espiritual",
-    therapist: "Sofia Ralha",
-  },
-  {
-    date: "15 de Janeiro - 19h",
-    title: "Sessão de Limpeza Espiritual",
-    therapist: "Galyna Ilyuk",
-  },
-  {
-    date: "23 de Janeiro - 20h",
-    title: "Sessão de Limpeza Espiritual",
-    therapist: "Cristiana Cunha",
-  },
-  {
-    date: "27 de Janeiro - 20h",
-    title: "Sessão de Limpeza Espiritual",
-    therapist: "Maria Assunção",
-  },
-  {
-    date: "30 de Janeiro - 20h",
-    title: "Sessão de Limpeza Espiritual",
-    therapist: "Alcina Almeida",
-  },
-];
-
-const januaryReasons = [
-  "Sente que repete os mesmos padrões, ano após ano, sem saber como sair",
-  "Sente o peso do ano acumulado e precisa de limpar para começar de verdade",
-  "Conhece o trabalho da Alex e quer viver o MÉTODO AUTOCURA ao vivo",
-  "Quer começar 2026 com mais leveza, clareza e direção interior",
-  "Sente que há algo mais para si além do que tem vivido até aqui",
-  "Está num momento de transição e precisa de método e segurança para mudar",
 ];
 
 export default function Home() {
@@ -183,7 +61,7 @@ export default function Home() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ["section-00", "section-01", "section-02", "section-03", "section-04", "section-05"];
+      const sections = ["section-00", "section-01", "section-02", "section-03"];
       const scrollPosition = window.scrollY + window.innerHeight / 2;
 
       for (const section of sections) {
@@ -339,181 +217,58 @@ export default function Home() {
       {contentSections.map((section, index) => (
         <section key={section.id} id={section.id} className="relative py-20 md:py-32">
           <div className={`${sectionShell}`}>
-            {section.id === "section-04" && (
-              <div className="space-y-12">
-                <motion.div
-                  className="text-center mb-16"
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.3 }}
-                >
-                  <h5 className="text-sm font-semibold uppercase tracking-[0.3em] text-[#ea8f3c] mb-4">
-                    Programação Especial
-                  </h5>
-                  <h2 className="text-3xl md:text-4xl font-bold text-[#0c3650]">
-                    Janeiro 2026
-                  </h2>
-                </motion.div>
-                
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                  {programHighlights.map((item, idx) => (
-                    <motion.div
-                      key={item.title}
-                      className="bg-white rounded-2xl p-6 shadow-lg border border-[#e8f4f8] hover:shadow-xl transition-shadow"
-                      initial={{ opacity: 0, y: 30 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true, amount: 0.3 }}
-                      transition={{ delay: idx * 0.1 }}
-                    >
-                      <h3 className="text-xl font-semibold text-[#f57d3e] mb-2">{item.title}</h3>
-                      <p className="text-[#1a455e] font-medium mb-4">{item.host}</p>
-                      <div className="space-y-1 text-sm text-[#1a455e]">
-                        {item.details.map((detail, detailIdx) => (
-                          <p
-                            key={`${item.title}-${detailIdx}`}
-                            className={detail.emphasis ? "font-semibold" : ""}
-                          >
-                            {detail.text}
-                          </p>
-                        ))}
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
-            )}
-            
-            {section.id === "section-05" && (
-              <div className="space-y-12">
-                <motion.div
-                  className="text-center mb-16"
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.3 }}
-                >
-                  <h5 className="text-sm font-semibold uppercase tracking-[0.3em] text-[#ea8f3c] mb-4">
-                    Este janeiro é para si se...
-                  </h5>
-                  <h2 className="text-3xl md:text-4xl font-bold text-[#0c3650]">
-                    Reconhece-se em alguma destas frases?
-                  </h2>
-                </motion.div>
-                
-                <div className="grid md:grid-cols-2 gap-6">
-                  {januaryReasons.map((reason, idx) => (
-                    <motion.div
-                      key={idx}
-                      className="flex items-start gap-3 p-4 bg-white/50 rounded-xl border border-[#e8f4f8]"
-                      initial={{ opacity: 0, x: -20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true, amount: 0.3 }}
-                      transition={{ delay: idx * 0.1 }}
-                    >
-                      <span className="text-[#f57d3e] text-xl">•</span>
-                      <p className="text-[#0c3650]">{reason}</p>
-                    </motion.div>
-                  ))}
-                </div>
-                
-                <motion.div
-                  className="text-center mt-12"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.3 }}
-                >
-                  <p className="text-lg text-[#0c3650] mb-6">
-                    Se se reconhece nestas linhas, este janeiro não foi marcado por acaso.
-                  </p>
-                  <motion.button
-                    className="px-8 py-3 bg-[#f57d3e] text-white rounded-full font-semibold hover:bg-[#ea8f3c] transition-colors"
-                    whileHover={{ scale: 1.05 }}
-                  >
-                    Reserve o seu lugar
-                  </motion.button>
-                </motion.div>
-              </div>
-            )}
-            
-            {section.id !== "section-04" && section.id !== "section-05" && (
-              <div className={`grid lg:grid-cols-2 gap-12 items-center ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
-                <motion.div
-                  className="space-y-6"
-                  initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, amount: 0.3 }}
-                  transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                >
-                  <div className="flex items-center gap-4">
-                    <span className="text-4xl font-bold text-[#ea8f3c]">{section.number}</span>
-                    <div>
-                      <h5 className="text-sm font-semibold uppercase tracking-[0.3em] text-[#2ab0c7]">
-                        {section.subtitle}
-                      </h5>
-                      <h2 className="text-3xl md:text-4xl font-bold text-[#0c3650]">
-                        {section.title}
-                      </h2>
-                    </div>
+            <div className={`grid lg:grid-cols-2 gap-12 items-center ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
+              <motion.div
+                className="space-y-6"
+                initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              >
+                <div className="flex items-center gap-4">
+                  <span className="text-4xl font-bold text-[#ea8f3c]">{section.number}</span>
+                  <div>
+                    <h5 className="text-sm font-semibold uppercase tracking-[0.3em] text-[#2ab0c7]">
+                      {section.subtitle}
+                    </h5>
+                    <h2 className="text-3xl md:text-4xl font-bold text-[#0c3650]">
+                      {section.title}
+                    </h2>
                   </div>
-                  
-                  <p className="text-lg text-[#0c3650] leading-relaxed">
-                    {section.description}
-                  </p>
-                  
-                  {section.id === "section-03" && (
-                    <div className="space-y-6 mt-8">
-                      <div className="space-y-4">
-                        {cleansingSessions.map((session, idx) => (
-                          <motion.div
-                            key={`${session.date}-${session.therapist}`}
-                            className={`border border-[#e5ecf0] px-5 py-4 rounded-xl ${
-                              idx % 2 === 0 ? "md:self-start md:text-left text-left" : "md:self-end md:text-right text-left"
-                            }`}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, amount: 0.3 }}
-                            transition={{ delay: idx * 0.1 }}
-                          >
-                            <p className="text-base font-semibold text-[#f57d3e]">{session.date}</p>
-                            <p className="text-lg font-semibold text-[#0c3650]">{session.title}</p>
-                            <p className="text-sm text-[#1a455e]">Terapeuta: {session.therapist}</p>
-                          </motion.div>
-                        ))}
-                      </div>
-                      <p className="text-sm font-semibold text-[#0c3650] text-center">
-                        Horário: 20h (exceto dia 15 de janeiro, às 19h) · Valor: 5€ por sessão
-                      </p>
-                    </div>
-                  )}
-                  
-                  <motion.a
-                    href="#"
-                    className="inline-flex items-center gap-2 text-[#f57d3e] font-semibold hover:gap-3 transition-all"
-                    whileHover={{ x: 5 }}
-                  >
-                    Saiba mais
-                    <svg width="24" height="16" viewBox="0 0 24 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M16 -6.99382e-07L14.59 1.41L20.17 7L-3.93402e-07 7L-3.0598e-07 9L20.17 9L14.58 14.58L16 16L24 8L16 -6.99382e-07Z" fill="#FBD784" />
-                    </svg>
-                  </motion.a>
-                </motion.div>
+                </div>
                 
-                <motion.div
-                  className="relative h-96 md:h-[500px] rounded-3xl overflow-hidden"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true, amount: 0.3 }}
-                  transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                <p className="text-lg text-[#0c3650] leading-relaxed">
+                  {section.description}
+                </p>
+                
+                <motion.a
+                  href="#"
+                  className="inline-flex items-center gap-2 text-[#f57d3e] font-semibold hover:gap-3 transition-all"
+                  whileHover={{ x: 5 }}
                 >
-                  <Image
-                    src={section.image}
-                    alt={section.title}
-                    fill
-                    className="object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0c3650]/20 to-transparent" />
-                </motion.div>
-              </div>
-            )}
+                  Saiba mais
+                  <svg width="24" height="16" viewBox="0 0 24 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16 -6.99382e-07L14.59 1.41L20.17 7L-3.93402e-07 7L-3.0598e-07 9L20.17 9L14.58 14.58L16 16L24 8L16 -6.99382e-07Z" fill="#FBD784" />
+                  </svg>
+                </motion.a>
+              </motion.div>
+              
+              <motion.div
+                className="relative h-96 md:h-[500px] rounded-3xl overflow-hidden"
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              >
+                <Image
+                  src={section.image}
+                  alt={section.title}
+                  fill
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0c3650]/20 to-transparent" />
+              </motion.div>
+            </div>
           </div>
         </section>
       ))}
@@ -521,7 +276,7 @@ export default function Home() {
       {/* Side Navigation */}
       <nav className="fixed right-8 top-1/2 -translate-y-1/2 z-40 hidden lg:block">
         <div className="flex flex-col gap-4">
-          {["section-00", "section-01", "section-02", "section-03", "section-04", "section-05"].map((sectionId) => (
+          {["section-00", "section-01", "section-02", "section-03"].map((sectionId) => (
             <a
               key={sectionId}
               href={`#${sectionId}`}
@@ -581,7 +336,7 @@ export default function Home() {
               ))}
             </div>
 
-            <div className="relative min-h-[400px] rounded-3xl border-2 border-dashed border-[#e8f4f8] flex items-center justify-center bg-gradient-to-br from-[#f7fbff] via-[#e9f6ff] to-[#fff3e8]">
+            <div className="relative min-h-[400px] rounded-3xl border-2 border-dashed border-[#e8f4f8] flex items-center justify-center">
               <AnimatePresence mode="wait">
                 {activeFaq !== null && answerTypingDone ? (
                   <motion.div
@@ -589,16 +344,12 @@ export default function Home() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -20 }}
-                    className="relative w-full h-full flex items-center justify-center p-8"
+                    className="absolute inset-0 rounded-3xl bg-gradient-to-br from-[#f7fbff] via-[#e9f6ff] to-[#fff3e8] p-8"
                   >
-                    <div className="relative max-w-md mx-auto text-center">
-                      <FaQuoteLeft className="absolute -top-4 -left-4 text-[#f57d3e]/30 text-2xl" />
-                      <FaQuoteRight className="absolute -bottom-4 -right-4 text-[#f57d3e]/30 text-2xl" />
-                      <p className="text-xl leading-relaxed text-[#032035] font-medium italic px-8">
-                        {answerText}
-                        {!answerTypingDone && <span className="animate-pulse">|</span>}
-                      </p>
-                    </div>
+                    <p className="text-center text-lg leading-relaxed text-[#032035]">
+                      {answerText}
+                      {!answerTypingDone && <span className="animate-pulse">|</span>}
+                    </p>
                   </motion.div>
                 ) : (
                   <motion.div
@@ -608,11 +359,8 @@ export default function Home() {
                     exit={{ opacity: 0 }}
                     className="text-center text-[#0c3f5a]"
                   >
-                    <div className="relative">
-                      <FaQuoteLeft className="text-[#f57d3e]/20 text-3xl mx-auto mb-4" />
-                      <p className="text-lg font-medium">Selecione uma pergunta para ver a resposta</p>
-                      <FaQuoteRight className="text-[#f57d3e]/20 text-3xl mx-auto mt-4" />
-                    </div>
+                    <span className="text-2xl text-[#f57d3e]">⬤</span>
+                    <p className="mt-4">Selecione uma pergunta para ver a resposta</p>
                   </motion.div>
                 )}
               </AnimatePresence>
