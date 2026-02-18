@@ -32,6 +32,13 @@ const heroBullets = [
   "• Para quem quer começar 2026 com mais leveza, clareza e direção.",
 ];
 
+const navLinks = [
+  { href: "#section-01", label: "O que acontece" },
+  { href: "#section-02", label: "Como participar" },
+  { href: "#section-03", label: "Sessões" },
+  { href: "#section-bilhetes", label: "Bilhetes" },
+];
+
 const contentSections = [
   {
     id: "section-01",
@@ -48,17 +55,17 @@ const contentSections = [
     image: fotoTres,
   },
   {
-    id: "section-03",
-    subtitle: "Sessões Presenciais de",
-    title: "Limpeza Espiritual",
-    description: "Durante várias semanas, no espaço Caminhos Prá Saúde, vão acontecer encontros presenciais onde vai poder: Sentar-se numa sala em Braga, com outras pessoas na mesma intenção, e ser guiado em meditações para limpar o peso do ano e alinhar a vida com a alma. Participar em sessões presenciais de limpeza espiritual para soltar culpa, medo, exaustão e padrões que já não fazem sentido. Estar frente a frente com TERAPEUTAS AUTOCURA, levar questões e receber orientação dentro do método para relações, trabalho, família e decisões.",
-  },
-  {
     id: "section-04",
     subtitle: "Programação Especial",
     title: "Janeiro 2026",
     description: "Eventos especiais com terapeutas AUTOCURA e convidados para aprofundar diferentes temas do método.",
     image: fotoTres,
+  },
+  {
+    id: "section-03",
+    subtitle: "Sessões Presenciais de",
+    title: "Limpeza Espiritual",
+    description: "Durante várias semanas, no espaço Caminhos Prá Saúde, vão acontecer encontros presenciais onde vai poder: Sentar-se numa sala em Braga, com outras pessoas na mesma intenção, e ser guiado em meditações para limpar o peso do ano e alinhar a vida com a alma. Participar em sessões presenciais de limpeza espiritual para soltar culpa, medo, exaustão e padrões que já não fazem sentido. Estar frente a frente com TERAPEUTAS AUTOCURA, levar questões e receber orientação dentro do método para relações, trabalho, família e decisões.",
   },
   {
     id: "section-05",
@@ -236,7 +243,7 @@ const ticketOptions = [
     location: "Espaço Caminhos Prá Saúde",
     address: "Rua Abade Loureira, 37 — Braga",
     phone: "+351 913 240 700",
-    note: "Garanta o seu lugar e viva esta experiência única. Compra diretamente no local.",
+    note: "Garanta o seu lugar e viva esta experiência única. Compra directamente no local.",
     accent: "from-[#e8f9ff] via-[#f3fbff] to-white",
   },
 ];
@@ -249,6 +256,7 @@ export default function Home() {
   const [typingDone, setTypingDone] = useState(false);
   const [answerText, setAnswerText] = useState("");
   const [answerTypingDone, setAnswerTypingDone] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const typingTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const answerTypingTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -335,6 +343,10 @@ export default function Home() {
     typeQuestion();
   };
 
+  const handleNavigate = () => {
+    setMobileMenuOpen(false);
+  };
+
   if (!mounted) return null;
 
   return (
@@ -350,20 +362,65 @@ export default function Home() {
           </div>
           
           <div className="hidden md:flex items-center gap-8">
-            <a href="#section-01" className="text-sm font-medium text-[#0c3650] hover:text-[#f57d3e] transition-colors">O que acontece</a>
-            <a href="#section-02" className="text-sm font-medium text-[#0c3650] hover:text-[#f57d3e] transition-colors">Como participar</a>
-            <a href="#section-03" className="text-sm font-medium text-[#0c3650] hover:text-[#f57d3e] transition-colors">Sessões</a>
-            <a href="#section-bilhetes" className="px-4 py-2 bg-[#f57d3e] text-white rounded-full text-sm font-medium hover:bg-[#ea8f3c] transition-colors">
+            {navLinks.slice(0, 3).map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className="text-sm font-medium text-[#0c3650] hover:text-[#f57d3e] transition-colors"
+              >
+                {link.label}
+              </a>
+            ))}
+            <a
+              href="#section-bilhetes"
+              className="px-4 py-2 bg-[#f57d3e] text-white rounded-full text-sm font-medium hover:bg-[#ea8f3c] transition-colors"
+            >
               Reservar lugar
             </a>
           </div>
 
-          <button className="md:hidden p-2">
-            <div className="w-6 h-0.5 bg-[#0c3650] mb-1.5"></div>
-            <div className="w-6 h-0.5 bg-[#0c3650] mb-1.5"></div>
-            <div className="w-6 h-0.5 bg-[#0c3650]"></div>
+          <button
+            className="md:hidden p-2 focus:outline-none"
+            onClick={() => setMobileMenuOpen((prev) => !prev)}
+            aria-label="Abrir menu"
+            aria-expanded={mobileMenuOpen}
+          >
+            <div className="w-6 h-0.5 bg-[#0c3650] mb-1.5 transition-transform" style={{ transform: mobileMenuOpen ? "translateY(7px) rotate(45deg)" : "none" }}></div>
+            <div className={`w-6 h-0.5 bg-[#0c3650] mb-1.5 transition-opacity ${mobileMenuOpen ? "opacity-0" : "opacity-100"}`}></div>
+            <div className="w-6 h-0.5 bg-[#0c3650] transition-transform" style={{ transform: mobileMenuOpen ? "translateY(-7px) rotate(-45deg)" : "none" }}></div>
           </button>
         </nav>
+
+        <AnimatePresence>
+          {mobileMenuOpen && (
+            <motion.div
+              className="md:hidden bg-white/95 shadow-lg border-t border-[#e8f4f8]"
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+            >
+              <div className="px-6 py-4 space-y-4">
+                {navLinks.map((link) => (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    onClick={handleNavigate}
+                    className="block text-base font-medium text-[#0c3650] hover:text-[#f57d3e] transition-colors"
+                  >
+                    {link.label}
+                  </a>
+                ))}
+                <a
+                  href="#section-bilhetes"
+                  onClick={handleNavigate}
+                  className="block w-full text-center px-4 py-2 bg-[#f57d3e] text-white rounded-full text-sm font-semibold hover:bg-[#ea8f3c] transition-colors"
+                >
+                  Reservar lugar
+                </a>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </header>
 
       {/* Hero Section */}
@@ -718,11 +775,13 @@ export default function Home() {
                   {section.id !== "section-03" ? (
                     <p className="text-lg text-[#0c3650] leading-relaxed">{section.description}</p>
                   ) : (
-                    <div className="space-y-4 mt-8">
+                    <div className="mt-8 flex flex-col gap-6">
                       {cleansingSessions.map((session, idx) => (
                         <motion.div
                           key={`${session.date}-${session.therapist}`}
-                          className="border border-[#e5ecf0] px-5 py-4 rounded-2xl"
+                          className={`border border-[#e5ecf0] px-5 py-4 rounded-2xl w-full md:w-4/5 ${
+                            idx % 2 === 1 ? "md:self-end md:text-right" : "md:self-start md:text-left"
+                          }`}
                           initial={{ opacity: 0, y: 20 }}
                           whileInView={{ opacity: 1, y: 0 }}
                           viewport={{ once: true, amount: 0.3 }}
@@ -735,7 +794,7 @@ export default function Home() {
                       ))}
 
                       <p className="text-sm font-semibold text-[#0c3650] text-center">
-                        Horário: 20h (exceto dia 15 de janeiro, às 19h) · Valor: 5€ por sessão
+                        Horário: 20h (excepto dia 15 de janeiro, às 19h) · Valor: 5€ por sessão
                       </p>
                     </div>
                   )}
@@ -840,9 +899,9 @@ export default function Home() {
               key={sectionId}
               href={`#${sectionId}`}
               className={`w-3 h-3 rounded-full transition-all ${
-                activeSection === sectionId 
-                  ? 'bg-[#f57d3e] scale-125' 
-                  : 'bg-[#cfe6ef] hover:bg-[#2ab0c7]'
+                activeSection === sectionId
+                  ? "bg-[#f57d3e] scale-125"
+                  : "bg-[#cfe6ef] hover:bg-[#2ab0c7]"
               }`}
             />
           ))}
@@ -874,8 +933,8 @@ export default function Home() {
                   onClick={() => handleFaqClick(index)}
                   className={`w-full text-left p-6 rounded-2xl border transition-all ${
                     activeFaq === index
-                      ? 'bg-white border-[#f57d3e] shadow-lg'
-                      : 'bg-white/50 border-[#e8f4f8] hover:bg-white hover:border-[#2ab0c7]'
+                      ? "bg-white border-[#f57d3e] shadow-lg"
+                      : "bg-white/50 border-[#e8f4f8] hover:bg-white hover:border-[#2ab0c7]"
                   }`}
                   whileHover={{ scale: 1.02 }}
                 >
@@ -924,7 +983,7 @@ export default function Home() {
                   >
                     <div className="relative">
                       <FaQuoteLeft className="text-[#f57d3e]/20 text-3xl mx-auto mb-4" />
-                      <p className="text-lg font-medium">Selecione uma pergunta para ver a resposta</p>
+                      <p className="text-lg font-medium">Seleccione uma pergunta para ver a resposta</p>
                       <FaQuoteRight className="text-[#f57d3e]/20 text-3xl mx-auto mt-4" />
                     </div>
                   </motion.div>
@@ -970,7 +1029,7 @@ export default function Home() {
             </div>
 
             <div>
-              <h4 className="text-lg font-semibold mb-6 text-[#f6b658]">Contato</h4>
+              <h4 className="text-lg font-semibold mb-6 text-[#f6b658]">Contacto</h4>
               <div className="space-y-4">
                 <a href="#" className="flex items-center gap-3 text-white/80 hover:text-white transition-colors">
                   <FaInstagram className="text-xl" />
@@ -982,7 +1041,7 @@ export default function Home() {
                 </a>
                 <a href="#" className="flex items-center gap-3 text-white/80 hover:text-white transition-colors">
                   <FaEnvelope className="text-xl" />
-                  <span>Email</span>
+                  <span>E-mail</span>
                 </a>
                 <a href="#" className="flex items-center gap-3 text-white/80 hover:text-white transition-colors">
                   <span className="w-5 h-5 bg-white/20 rounded-full flex items-center justify-center text-xs">👥</span>
@@ -1011,12 +1070,12 @@ const faqItems = [
   {
     questionLines: ["E se só puder ir a um ou dois encontros?"],
     answer:
-      "Pode comprar bilhetes por encontro e escolher exactamente onde quer estar. Se, no caminho, sentir que quer o ciclo inteiro, fale com a equipa no local: se ainda houver vagas, será feito o possível para o ajudar a atualizar para o PASSE.",
+      "Pode comprar bilhetes por encontro e escolher exactamente onde quer estar. Se, no caminho, sentir que quer o ciclo inteiro, fale com a equipa no local: se ainda houver vagas, será feito o possível para o ajudar a actualizar para o PASSE.",
   },
   {
     questionLines: ["O PASSE inclui tudo do calendário?"],
     answer:
-      "O PASSE AUTOCURA – BRAGA inclui o ciclo principal de encontros do MÉTODO AUTOCURA ao longo de janeiro. As iniciativas AUTOCURA PARA CRIANÇAS e o workshop de alimentação “COMER, SENTIR E CURAR” têm inscrição à parte e não estão incluídos no PASSE. Sessões de limpeza não estão inclusas.",
+      "O PASSE AUTOCURA – BRAGA inclui o ciclo principal de encontros do MÉTODO AUTOCURA ao longo de janeiro. As iniciativas AUTOCURA PARA CRIANÇAS e o workshop de alimentação “COMER, SENTIR E CURAR” têm inscrição à parte e não estão incluídos no PASSE. Sessões de limpeza não estão incluídas.",
   },
   {
     questionLines: ["Não me considero 'muito espiritual'. Posso ir na mesma?"],
